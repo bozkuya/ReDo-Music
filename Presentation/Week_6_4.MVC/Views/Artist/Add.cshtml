@@ -1,0 +1,33 @@
+@* Add a new artist *@
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Add Artist</h2>
+
+<form method="post">
+    <div class="mb-3 mt-3">
+        <label class="form-label">Artist Name:</label>
+        <input type="text" class="form-control" placeholder="Enter Artist Name" name="name" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Genres:</label>
+        <select multiple class="form-control" name="genres" required>
+            <option value="Rock">Rock</option>
+            <option value="Jazz">Jazz</option>
+            <option value="Classical">Classical</option>
+            <!-- More genres options here -->
+        </select>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Select Instruments:</label>
+        <select multiple class="form-control" name="instrumentIds">
+            @* The instrument list will be loaded from the controller *@
+            @foreach (var instrument in ViewBag.Instruments)
+            {
+                <option value="@instrument.Id">@instrument.Name</option>
+            }
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Add Artist</button>
+</form>

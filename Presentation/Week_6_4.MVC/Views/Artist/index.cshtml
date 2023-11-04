@@ -1,0 +1,41 @@
+@* List all artists *@
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Artists</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Genres</th>
+            <th>Instruments</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var artist in Model)
+    {
+        <tr>
+            <td>@artist.Name</td>
+            <td>
+                @foreach (var genre in artist.Genres)
+                {
+                    @genre <br />
+                }
+            </td>
+            <td>
+                @foreach (var instrument in artist.Instruments)
+                {
+                    @instrument.Name <br />
+                }
+            </td>
+            <td>
+                <a href="/artist/edit/@artist.Id" class="btn btn-primary">Edit</a>
+                <a href="/artist/delete/@artist.Id" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
